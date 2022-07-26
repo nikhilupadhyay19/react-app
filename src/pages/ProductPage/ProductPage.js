@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './ProductPage.scss';
 
+import { ProductList } from '../../components/ProductList/ProductList';
+
 const APIURL = 'https://restcountries.com/v3.1';
 const TIMEOUT = 10;
 
@@ -43,6 +45,10 @@ const ProductPage = () => {
     })();
   }, []);
 
+  const childToParent = (fName, lName) => {
+    console.log(`${fName} ${lName}`);
+  };
+
   if (error) {
     return (
       <div className="product-page" id="productPage">
@@ -62,7 +68,11 @@ const ProductPage = () => {
   return (
     <div className="product-page" id="productPage">
       <p>Welcome to Products page...</p>
-      <p>{JSON.stringify(products)}</p>
+      {/* <p>{JSON.stringify(products)}</p> */}
+      <ProductList ctp={childToParent} data={products} />
+
+      {/* Child to parent commnucation possible with the help of callback function and then pass data as argument... */}
+      {/* <button onClick={childToParent}>Click Here</button> */}
     </div>
   );
 };
